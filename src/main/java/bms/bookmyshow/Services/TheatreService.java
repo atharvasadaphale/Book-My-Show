@@ -5,24 +5,36 @@ import bms.bookmyshow.Entities.Theatre;
 import bms.bookmyshow.Entities.TheatreSeat;
 import bms.bookmyshow.EntryDtos.TheatreEntryDto;
 import bms.bookmyshow.Enums.SeatType;
+import bms.bookmyshow.Repository.TheatreRepository;
 import bms.bookmyshow.Repository.TheatreSeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class TheatreService {
     @Autowired
     TheatreSeatRepository theatreSeatRepository;
+    
+    @Autowired
+    TheatreRepository theatreRepository;
 
 
-    public String addTheater(TheatreEntryDto theaterEntryDto){
+    public String addTheater(TheatreEntryDto theaterEntryDto) throws Exception {
+        if(theaterEntryDto.getName()==null || theaterEntryDto.getLocation()==null){
+            throw new Exception("Name and location not valid.");
+        }
 
-        Theatre theaterEntity = TheaterConvertors.convertDtoToEntity(theaterEntryDto);
+        Theatre theatre = TheaterConvertors.convertDtoToEntity(theaterEntryDto);
 
-        List<TheatreSeat> theaterSeatEntityList = createTheaterSeats(theaterEntryDto,theaterEntity);
+        List<TheatreSeat> theatreSeatList = createTheaterSeats(theaterEntryDto,theatre);
 
-        return "";
+        theatre.setTheaterSeatEntityList(theatreSeatList);
+        theatreRepository.save(theatre);
+
+        return "Theatre added successfully";
     }
 
     private List<TheatreSeat> createTheaterSeats(TheatreEntryDto theatreEntryDto,Theatre theatre){
@@ -56,7 +68,7 @@ public class TheatreService {
 
         }
 
-        theatreSeatRepository.saveAll(theatreSeatList);
+        //theatreSeatRepository.saveAll(theatreSeatList);
 
         return theatreSeatList;
 

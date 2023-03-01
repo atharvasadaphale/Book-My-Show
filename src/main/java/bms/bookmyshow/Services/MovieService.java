@@ -5,7 +5,9 @@ import bms.bookmyshow.Entities.Movie;
 import bms.bookmyshow.EntryDtos.MovieEntryDto;
 import bms.bookmyshow.Repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MovieService {
     @Autowired
     MovieRepository movieRepository;

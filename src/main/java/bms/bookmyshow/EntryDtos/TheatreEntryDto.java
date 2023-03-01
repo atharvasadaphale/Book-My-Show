@@ -7,6 +7,7 @@ public class TheatreEntryDto {
 
     //Attributes that we require
     private String name;
+
     private String location;
 
     private int classicSeatsCount;

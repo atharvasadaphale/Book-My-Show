@@ -5,7 +5,9 @@ import bms.bookmyshow.Entities.User;
 import bms.bookmyshow.EntryDtos.UserEntryDto;
 import bms.bookmyshow.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
     @Autowired
     UserRepository userRepository;

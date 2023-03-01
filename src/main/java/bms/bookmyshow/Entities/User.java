@@ -33,6 +33,6 @@ public class User {
 
     private String address;
 
-    @OneToMany(mappedBy = "userEntity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
     private List<Ticket> bookedTickets = new ArrayList<>();
 }

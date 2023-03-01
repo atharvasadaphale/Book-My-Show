@@ -29,10 +29,18 @@ public class Theatre {
 
     //This is the parent wrt to theaterSeats
     //one theatre has many seats
-    @OneToMany(mappedBy = "theaterEntity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "theatre",cascade = CascadeType.ALL)
     private List<TheatreSeat> theaterSeatEntityList = new ArrayList<>();
 
     //one theatre has many shows
-    @OneToMany(mappedBy = "theaterEntity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "theatre",cascade = CascadeType.ALL)
     private List<Show> showEntityList;
+
+    public List<TheatreSeat> getTheaterSeatEntityList() {
+        return theaterSeatEntityList;
+    }
+
+    public void setTheaterSeatEntityList(List<TheatreSeat> theaterSeatEntityList) {
+        this.theaterSeatEntityList = theaterSeatEntityList;
+    }
 }
